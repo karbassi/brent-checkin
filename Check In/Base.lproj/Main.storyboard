@@ -215,10 +215,10 @@
             </objects>
             <point key="canvasLocation" x="49" y="170"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="7tX-mF-KfE">
             <objects>
-                <viewController id="WTi-O8-Ba7" sceneMemberID="viewController">
+                <viewController id="WTi-O8-Ba7" customClass="LoginViewController" customModule="Check_In" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZQL-gK-BCL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -280,6 +280,7 @@
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="loginDidTouch:" destination="WTi-O8-Ba7" eventType="touchUpInside" id="pKK-x2-A77"/>
                                             <segue destination="M3o-Ww-DvR" kind="presentation" id="dCa-dR-gvQ"/>
                                         </connections>
                                     </button>
@@ -307,16 +308,33 @@
                                     <constraint firstItem="IYZ-Oa-dJ6" firstAttribute="centerX" secondItem="EA9-Lf-BfL" secondAttribute="centerX" id="zk5-fS-G61"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YDg-8R-zeJ">
+                                <rect key="frame" x="32" y="516" width="311" height="34"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                <state key="normal" title="sign up">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="signUpDidTouch:" destination="WTi-O8-Ba7" eventType="touchUpInside" id="dzX-RF-KYx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="EA9-Lf-BfL" firstAttribute="leading" secondItem="qDP-RV-qAe" secondAttribute="leading" constant="16" id="Gyz-pu-aLD"/>
                             <constraint firstItem="EA9-Lf-BfL" firstAttribute="centerX" secondItem="ZQL-gK-BCL" secondAttribute="centerX" id="Tf7-JB-Gs8"/>
                             <constraint firstItem="EA9-Lf-BfL" firstAttribute="centerY" secondItem="ZQL-gK-BCL" secondAttribute="centerY" id="aji-tM-Gxg"/>
+                            <constraint firstItem="qDP-RV-qAe" firstAttribute="trailing" secondItem="YDg-8R-zeJ" secondAttribute="trailing" constant="32" id="bPq-ee-Ayy"/>
                             <constraint firstItem="qDP-RV-qAe" firstAttribute="trailing" secondItem="EA9-Lf-BfL" secondAttribute="trailing" constant="16" id="jKm-C9-aox"/>
+                            <constraint firstItem="YDg-8R-zeJ" firstAttribute="top" secondItem="EA9-Lf-BfL" secondAttribute="bottom" constant="8" id="jgk-Xr-Fhd"/>
+                            <constraint firstItem="YDg-8R-zeJ" firstAttribute="leading" secondItem="qDP-RV-qAe" secondAttribute="leading" constant="32" id="vVO-A4-0Tx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qDP-RV-qAe"/>
                     </view>
+                    <connections>
+                        <outlet property="emailField" destination="QHA-Hq-O1a" id="BJl-MP-cH5"/>
+                        <outlet property="passwordField" destination="AcJ-ch-Oeb" id="jO9-BJ-Xyz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bZO-Dw-IuV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
