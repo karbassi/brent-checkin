@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
     let loginToList = "LoginToList"
@@ -16,6 +17,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginDidTouch(_ sender: Any) {
         performSegue(withIdentifier: loginToList, sender: nil)
+        Auth.auth().signIn(withEmail: emailField.text!, password: passwordField.text!)
     }
     
     @IBAction func signUpDidTouch(_ sender: Any) {
@@ -25,7 +27,19 @@ class LoginViewController: UIViewController {
         
         let saveAction = UIAlertAction(title: "Save",
                                        style: .default) { action in
-                                        
+            // 1
+            let emailAlertField = alert.textFields![0]
+            let passwordAlertField = alert.textFields![1]
+            
+            // 2
+            Auth.auth().createUser(withEmail: emailAlertField.text!,
+                                       password: passwordAlertField.text!) { user, error in
+                if error == nil {
+                    // 3
+                    Auth.auth().signIn(withEmail: emailAlertField.text!,
+                                           password: passwordAlertField.text!)
+                }
+            }
         }
         
         let cancelAction = UIAlertAction(title: "Cancel",
@@ -50,6 +64,13 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        Auth.auth().addStateDidChangeListener() { auth, user in
+            // 2
+            if user != nil {
+                // 3
+                self.performSegue(withIdentifier: self.loginToList, sender: nil)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
