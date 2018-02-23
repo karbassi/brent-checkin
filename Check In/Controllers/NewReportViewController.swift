@@ -7,13 +7,24 @@
 //
 
 import UIKit
+import Firebase
 
 class NewReportViewController: UIViewController {
+    var user: User!
+    var newReport: Report!
+    let currentUser = Auth.auth().currentUser!
+    let ref = Database.database().reference()
+//    var rootRef = Database.database().reference()
+    
+    @IBOutlet weak var moodLevel: UISlider!
+    @IBOutlet weak var descriptionField: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+
+        if Auth.auth().currentUser != nil {
+            user = User(uid: currentUser.uid, email: currentUser.email!)
+        } else { return }
     }
     
     override func didReceiveMemoryWarning() {
@@ -28,6 +39,14 @@ class NewReportViewController: UIViewController {
     @IBAction func sliderChanged(_ sender: UISlider) {
         let fixed = roundf(sender.value);
         sender.setValue(fixed, animated: true)
+    }
+    
+    @IBAction func saveButtonDidTouch(_ sender: Any) {
+        newReport = Report(mood: Int(moodLevel.value), addedByUser: currentUser.email!, description: descriptionField.text)
+        print(moodLevel.value.rounded())
+        print(currentUser.email!)
+        print(descriptionField.text)
+        print(newReport)
     }
     
     /*
