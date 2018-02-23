@@ -31,7 +31,7 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="response_preview" id="FR6-ak-ST5">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReportCell" id="FR6-ak-ST5">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FR6-ak-ST5" id="hef-J0-03W">
@@ -80,7 +80,11 @@
                                                 <action selector="cancel:" destination="oYB-D2-QzS" id="IyS-Aa-V6B"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="H4t-2P-lIf"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="H4t-2P-lIf">
+                                            <connections>
+                                                <action selector="saveButtonDidTouch:" destination="oYB-D2-QzS" id="HTZ-d4-Knc"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -136,6 +140,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cKf-I9-bVx"/>
                     </view>
+                    <connections>
+                        <outlet property="descriptionField" destination="79D-Jh-Cqq" id="6aY-6w-21U"/>
+                        <outlet property="moodLevel" destination="M7l-st-nJc" id="koz-qr-8T0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F7m-42-Yt4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -281,7 +289,6 @@
                                         </state>
                                         <connections>
                                             <action selector="loginDidTouch:" destination="WTi-O8-Ba7" eventType="touchUpInside" id="pKK-x2-A77"/>
-                                            <segue destination="M3o-Ww-DvR" kind="presentation" id="dCa-dR-gvQ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -305,7 +312,6 @@
                                     <constraint firstAttribute="trailing" secondItem="QHA-Hq-O1a" secondAttribute="trailing" constant="16" id="YJ5-DZ-yBI"/>
                                     <constraint firstItem="Nez-sJ-I6D" firstAttribute="leading" secondItem="EA9-Lf-BfL" secondAttribute="leading" constant="16" id="mOo-8j-r00"/>
                                     <constraint firstItem="AcJ-ch-Oeb" firstAttribute="top" secondItem="1Fc-X5-qU1" secondAttribute="bottom" constant="16" id="nyP-l7-bg1"/>
-                                    <constraint firstItem="IYZ-Oa-dJ6" firstAttribute="centerX" secondItem="EA9-Lf-BfL" secondAttribute="centerX" id="zk5-fS-G61"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YDg-8R-zeJ">
@@ -334,6 +340,7 @@
                     <connections>
                         <outlet property="emailField" destination="QHA-Hq-O1a" id="BJl-MP-cH5"/>
                         <outlet property="passwordField" destination="AcJ-ch-Oeb" id="jO9-BJ-Xyz"/>
+                        <segue destination="M3o-Ww-DvR" kind="presentation" identifier="LoginToList" id="6ZH-53-xEy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bZO-Dw-IuV" userLabel="First Responder" sceneMemberID="firstResponder"/>
