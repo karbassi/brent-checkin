@@ -7,11 +7,25 @@
 //
 
 import UIKit
+import Firebase
 
 class ReportsTableViewController: UITableViewController {
-
+    // MARK: Constants
+    let listToUsers = "ListToUsers"
+    
+    // MARK: Properties
+    var reports: [Report] = []
+    var user: User!
+    let currentUser = Auth.auth().currentUser!
+    let ref = Database.database().reference(withPath: "report-items")
+    
+//    var rootRef = Database.database().reference(withPath: "reports")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        if Auth.auth().currentUser != nil {
+            user = User(uid: currentUser.uid, email: currentUser.email!)
+        } else { return }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -29,23 +43,31 @@ class ReportsTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return reports.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return reports.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReportCell", for: indexPath)
 
-        // Configure the cell...
-
+        let reportItem = reports[indexPath.row]
+        
+        cell.textLabel?.text = String(reportItem.mood)
+        cell.detailTextLabel?.text = reportItem.addedByUser
+        
         return cell
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            reports.remove(at: indexPath.row)
+            tableView.reloadData()
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.
