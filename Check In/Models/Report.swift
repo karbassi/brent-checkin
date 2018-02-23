@@ -16,14 +16,14 @@ struct Report {
     let addedByUser: String
     let ref: DatabaseReference?
     let description: String
-    let created_at: NSDate
+    let created_at: TimeInterval
     
-    init(mood: Int, addedByUser: String, description: String, created_at: NSDate, key: String = "") {
+    init(mood: Int, addedByUser: String, description: String, key: String = "") {
         self.key = key
         self.mood = mood
         self.addedByUser = addedByUser
         self.description = description
-        self.created_at = created_at
+        self.created_at = NSDate().timeIntervalSince1970
         self.ref = nil
     }
     
@@ -33,7 +33,7 @@ struct Report {
         mood = snapshotValue["name"] as! Int
         addedByUser = snapshotValue["addedByUser"] as! String
         description = snapshotValue["completed"] as! String
-        created_at = snapshotValue["created_at"] as! NSDate
+        created_at = snapshotValue["created_at"] as! TimeInterval
         ref = snapshot.ref
     }
     
