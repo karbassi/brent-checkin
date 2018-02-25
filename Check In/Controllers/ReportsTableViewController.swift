@@ -7,9 +7,15 @@
 //
 
 import UIKit
+import Firebase
 
 class ReportsTableViewController: UITableViewController {
-
+    var ref: DatabaseReference!
+    var reportList: [Report] = []
+    var uid: String!
+    var email: String!
+    let user = Auth.auth().currentUser
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,6 +24,39 @@ class ReportsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        ref = Database.database().reference().child("reports")
+        
+        if user != nil {
+            uid = self.user!.uid
+            email = self.user!.email!
+        } else { return }
+        
+        ref.observe(DataEventType.value, with: { (snapshot) in
+            
+            //if the reference have some values
+            if snapshot.childrenCount > 0 {
+                
+                //clearing the list
+                self.reportList.removeAll()
+                
+                //iterating through all the values
+                for reports in snapshot.children.allObjects as! [DataSnapshot] {
+                    //getting values
+                    let reportObject = reports.value as? [String: AnyObject]
+                    let reportMood  = reportObject?["mood"]
+                    let reportDescription = reportObject?["description"]
+                    let reportAddedByUser = reportObject?["addedByUser"]
+                    
+                    let report = Report(mood: reportMood as! String, addedByUser: reportAddedByUser as! String, description: reportDescription as! String)
+                    
+                    //appending it to list
+                    self.reportList.append(report)
+                }
+                self.reportList = self.reportList.reversed()
+                //reloading the tableview
+                self.tableView.reloadData()
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,23 +68,23 @@ class ReportsTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return reportList.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReportCell", for: indexPath)
+        let report = reportList[indexPath.row]
+        
+        cell.imageView?.image = UIImage(named: "mood\(report.mood)")
+        cell.textLabel?.text = String(report.description.prefix(50))
+        
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
