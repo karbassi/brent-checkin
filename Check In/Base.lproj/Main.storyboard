@@ -31,12 +31,33 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReportCell" id="FR6-ak-ST5">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ReportCell" id="FR6-ak-ST5">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FR6-ak-ST5" id="hef-J0-03W">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mood3" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y7K-py-bbT">
+                                            <rect key="frame" x="8" y="4" width="35.5" height="35.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="y7K-py-bbT" secondAttribute="height" multiplier="1:1" id="8y6-mf-egt"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timestamp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epX-tO-NbE">
+                                            <rect key="frame" x="51" y="11" width="86" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="y7K-py-bbT" firstAttribute="leading" secondItem="hef-J0-03W" secondAttribute="leading" constant="8" id="D5h-Bx-cnL"/>
+                                        <constraint firstAttribute="bottom" secondItem="y7K-py-bbT" secondAttribute="bottom" constant="4" id="KQP-qx-QiR"/>
+                                        <constraint firstItem="epX-tO-NbE" firstAttribute="centerY" secondItem="hef-J0-03W" secondAttribute="centerY" id="O8V-fp-m0a"/>
+                                        <constraint firstItem="y7K-py-bbT" firstAttribute="top" secondItem="hef-J0-03W" secondAttribute="top" constant="4" id="gcf-HZ-60k"/>
+                                        <constraint firstItem="epX-tO-NbE" firstAttribute="leading" secondItem="y7K-py-bbT" secondAttribute="trailing" constant="8" id="x77-DQ-dB0"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
