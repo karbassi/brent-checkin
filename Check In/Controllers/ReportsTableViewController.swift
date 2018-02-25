@@ -24,15 +24,14 @@ class ReportsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        ref = Database.database().reference().child("reports")
         
         if user != nil {
             uid = self.user!.uid
             email = self.user!.email!
+            ref = Database.database().reference().child("reports").child(uid)
         } else { return }
         
         ref.observe(DataEventType.value, with: { (snapshot) in
-            
             //if the reference have some values
             if snapshot.childrenCount > 0 {
                 
