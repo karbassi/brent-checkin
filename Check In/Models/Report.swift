@@ -12,13 +12,13 @@ import Firebase
 struct Report {
     
     let key: String
-    let mood: Int
+    let mood: String
     let addedByUser: String
     let ref: DatabaseReference?
     let description: String
     let created_at: TimeInterval
     
-    init(mood: Int, addedByUser: String, description: String, key: String = "") {
+    init(mood: String, addedByUser: String, description: String, key: String = "") {
         self.key = key
         self.mood = mood
         self.addedByUser = addedByUser
@@ -30,9 +30,9 @@ struct Report {
     init(snapshot: DataSnapshot) {
         key = snapshot.key
         let snapshotValue = snapshot.value as! [String: AnyObject]
-        mood = snapshotValue["name"] as! Int
+        mood = snapshotValue["mood"] as! String
         addedByUser = snapshotValue["addedByUser"] as! String
-        description = snapshotValue["completed"] as! String
+        description = snapshotValue["description"] as! String
         created_at = snapshotValue["created_at"] as! TimeInterval
         ref = snapshot.ref
     }
