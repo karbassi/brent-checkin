@@ -16,22 +16,14 @@ struct Report {
     let addedByUser: String
     let ref: DatabaseReference?
     let description: String
-    let created_at: String
+    let created_at: TimeInterval
     
-    init(mood: String, addedByUser: String, description: String, key: String = "") {
+    init(mood: String, addedByUser: String, description: String, created_at: Double, key: String = "") {
         self.key = key
         self.mood = mood
         self.addedByUser = addedByUser
         self.description = description
-        
-        // set date string
-        let timeInterval = NSDate().timeIntervalSince1970
-        let date = NSDate(timeIntervalSince1970: TimeInterval(timeInterval))
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMM d, h:mm a"
-        
-        self.created_at = formatter.string(from: date as Date)
-        
+        self.created_at = created_at
         self.ref = nil
     }
     
@@ -41,7 +33,7 @@ struct Report {
         mood = snapshotValue["mood"] as! String
         addedByUser = snapshotValue["addedByUser"] as! String
         description = snapshotValue["description"] as! String
-        created_at = snapshotValue["created_at"] as! String
+        created_at = snapshotValue["created_at"] as! TimeInterval
         ref = snapshot.ref
     }
     
@@ -53,5 +45,5 @@ struct Report {
             "created_at": created_at
         ]
     }
-
+    
 }
