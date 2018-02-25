@@ -7,13 +7,25 @@
 //
 
 import UIKit
+import Firebase
 
 class DetailReportViewController: UIViewController {
-
+    var report: Report?
+    
+    @IBOutlet weak var moodLevelImage: UIImageView!
+    @IBOutlet weak var createdAtLabel: UILabel!
+    @IBOutlet weak var descriptionText: UITextView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        if let r = report {
+            moodLevelImage.image = UIImage(named: "mood\(r.mood)")
+            createdAtLabel.text = String(r.created_at)
+            descriptionText.text = r.description
+        }
     }
 
     override func didReceiveMemoryWarning() {
