@@ -45,8 +45,9 @@ class ReportsTableViewController: UITableViewController {
                     let reportMood  = reportObject?["mood"]
                     let reportDescription = reportObject?["description"]
                     let reportAddedByUser = reportObject?["addedByUser"]
+                    let reportCreatedAt = reportObject?["created_at"]
                     
-                    let report = Report(mood: reportMood as! String, addedByUser: reportAddedByUser as! String, description: reportDescription as! String)
+                    let report = Report(mood: reportMood as! String, addedByUser: reportAddedByUser as! String, description: reportDescription as! String, created_at: reportCreatedAt as! TimeInterval)
                     
                     //appending it to list
                     self.reportList.append(report)

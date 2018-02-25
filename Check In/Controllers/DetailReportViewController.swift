@@ -23,7 +23,7 @@ class DetailReportViewController: UIViewController {
         // Do any additional setup after loading the view.
         if let r = report {
             moodLevelImage.image = UIImage(named: "mood\(r.mood)")
-            createdAtLabel.text = r.created_at
+            createdAtLabel.text = getDateString(timeInterval: r.created_at)
             descriptionText.text = r.description
         }
     }
@@ -32,7 +32,13 @@ class DetailReportViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
+    func getDateString(timeInterval: TimeInterval) -> String{
+        let date = NSDate(timeIntervalSince1970: TimeInterval(timeInterval))
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM d, h:mm a"
+        return formatter.string(from: date as Date)
+    }
 
     /*
     // MARK: - Navigation

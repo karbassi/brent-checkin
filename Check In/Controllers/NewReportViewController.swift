@@ -45,7 +45,7 @@ class NewReportViewController: UIViewController {
     
     @IBAction func saveButtonDidTouch(_ sender: Any) {
         let key = ref.childByAutoId().key
-        newReport = Report(mood: String(Int(moodLevel.value)), addedByUser: email, description: descriptionField.text, key: key)
+        newReport = Report(mood: String(Int(moodLevel.value)), addedByUser: email, description: descriptionField.text, created_at:NSDate().timeIntervalSince1970, key: key)
         ref.child(key).setValue(newReport.toAnyObject())
         self.dismiss(animated: true, completion: nil)
     }
