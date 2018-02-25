@@ -10,20 +10,21 @@ import UIKit
 import Firebase
 
 class NewReportViewController: UIViewController {
-    var user: User!
     var newReport: Report!
-    let currentUser = Auth.auth().currentUser!
-    let ref = Database.database().reference()
-//    var rootRef = Database.database().reference()
-    
+    var uid: String!
+    var email: String!
+    let user = Auth.auth().currentUser
+    let ref = Database.database().reference().child("reports")
+
     @IBOutlet weak var moodLevel: UISlider!
     @IBOutlet weak var descriptionField: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if Auth.auth().currentUser != nil {
-            user = User(uid: currentUser.uid, email: currentUser.email!)
+        if user != nil {
+            uid = self.user!.uid
+            email = self.user!.email!
         } else { return }
     }
     
@@ -42,11 +43,10 @@ class NewReportViewController: UIViewController {
     }
     
     @IBAction func saveButtonDidTouch(_ sender: Any) {
-        newReport = Report(mood: Int(moodLevel.value), addedByUser: currentUser.email!, description: descriptionField.text)
-        print(moodLevel.value.rounded())
-        print(currentUser.email!)
-        print(descriptionField.text)
-        print(newReport)
+        let key = ref.childByAutoId().key
+        newReport = Report(mood: String(Int(moodLevel.value)), addedByUser: email, description: descriptionField.text, key: key)
+        ref.child(key).setValue(newReport.toAnyObject())
+        self.dismiss(animated: true, completion: nil)
     }
     
     /*
