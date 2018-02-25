@@ -23,7 +23,7 @@ class DetailReportViewController: UIViewController {
         // Do any additional setup after loading the view.
         if let r = report {
             moodLevelImage.image = UIImage(named: "mood\(r.mood)")
-            createdAtLabel.text = String(r.created_at)
+            createdAtLabel.text = r.created_at
             descriptionText.text = r.description
         }
     }
