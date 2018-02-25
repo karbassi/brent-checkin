@@ -14,7 +14,7 @@ class NewReportViewController: UIViewController {
     var uid: String!
     var email: String!
     let user = Auth.auth().currentUser
-    let ref = Database.database().reference().child("reports")
+    var ref: DatabaseReference!
 
     @IBOutlet weak var moodLevel: UISlider!
     @IBOutlet weak var descriptionField: UITextView!
@@ -25,6 +25,7 @@ class NewReportViewController: UIViewController {
         if user != nil {
             uid = self.user!.uid
             email = self.user!.email!
+            ref = Database.database().reference().child("reports").child(uid)
         } else { return }
     }
     
