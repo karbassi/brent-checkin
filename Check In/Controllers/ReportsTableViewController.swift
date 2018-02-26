@@ -83,6 +83,7 @@ class ReportsTableViewController: UITableViewController {
         
         cell.imageView?.image = UIImage(named: "mood\(report.mood)")
         cell.textLabel?.text = String(report.description.prefix(50))
+        cell.detailTextLabel?.text = getDateString(timeInterval: report.created_at)
         
         return cell
     }
@@ -147,6 +148,13 @@ class ReportsTableViewController: UITableViewController {
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
+    }
+    
+    func getDateString(timeInterval: TimeInterval) -> String{
+        let date = NSDate(timeIntervalSince1970: TimeInterval(timeInterval))
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM d, h:mm a"
+        return formatter.string(from: date as Date)
     }
 
 }
