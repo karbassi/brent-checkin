@@ -20,6 +20,7 @@
 		B33C8BF0203EB7DE000DEA94 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33C8BEF203EB7DE000DEA94 /* Report.swift */; };
 		B33C8BF2203EBA97000DEA94 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B33C8BF1203EBA97000DEA94 /* GoogleService-Info.plist */; };
 		B33C8BF4203F7F5F000DEA94 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33C8BF3203F7F5F000DEA94 /* LoginViewController.swift */; };
+		B33C8C012043E43E000DEA94 /* TextViewPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33C8C002043E43E000DEA94 /* TextViewPlaceholder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		B33C8BEF203EB7DE000DEA94 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		B33C8BF1203EBA97000DEA94 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B33C8BF3203F7F5F000DEA94 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B33C8C002043E43E000DEA94 /* TextViewPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewPlaceholder.swift; sourceTree = "<group>"; };
 		FFDB778E1C27697A4A663EEE /* Pods_Check_In.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Check_In.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -92,6 +94,7 @@
 		B302F215203D4FD300C208CC /* Check In */ = {
 			isa = PBXGroup;
 			children = (
+				B33C8C002043E43E000DEA94 /* TextViewPlaceholder.swift */,
 				B33C8BEC203EB7B5000DEA94 /* Controllers */,
 				B33C8BEB203EB7AE000DEA94 /* Models */,
 				B302F216203D4FD300C208CC /* AppDelegate.swift */,
@@ -264,6 +267,7 @@
 				B33C8BE4203EADC2000DEA94 /* NewReportViewController.swift in Sources */,
 				B302F219203D4FD300C208CC /* ViewController.swift in Sources */,
 				B33C8BF0203EB7DE000DEA94 /* Report.swift in Sources */,
+				B33C8C012043E43E000DEA94 /* TextViewPlaceholder.swift in Sources */,
 				B33C8BEE203EB7D6000DEA94 /* User.swift in Sources */,
 				B33C8BF4203F7F5F000DEA94 /* LoginViewController.swift in Sources */,
 				B33C8BEA203EAEB5000DEA94 /* ReportsTableViewController.swift in Sources */,
