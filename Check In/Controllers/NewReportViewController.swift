@@ -11,16 +11,16 @@ import Firebase
 
 class NewReportViewController: UIViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var moodLevel: UISlider!
+    @IBOutlet weak var descriptionField: UITextView!
     
     var newReport: Report!
     var uid: String!
     var email: String!
-    let user = Auth.auth().currentUser
     var ref: DatabaseReference!
-
-    @IBOutlet weak var moodLevel: UISlider!
-    @IBOutlet weak var descriptionField: UITextView!
     
+    let user = Auth.auth().currentUser
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,6 +30,8 @@ class NewReportViewController: UIViewController {
             ref = Database.database().reference().child("reports").child(uid)
         } else { return }
         
+        descriptionField.text = ""
+        descriptionField.placeholder = "Explain your mood..."
         addDoneToolbar()
     }
     
