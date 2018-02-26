@@ -345,7 +345,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YDg-8R-zeJ">
-                                <rect key="frame" x="32" y="516" width="311" height="34"/>
+                                <rect key="frame" x="156.5" y="516" width="62" height="34"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                 <state key="normal" title="sign up">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -361,10 +361,9 @@
                             <constraint firstItem="EA9-Lf-BfL" firstAttribute="leading" secondItem="qDP-RV-qAe" secondAttribute="leading" constant="16" id="Gyz-pu-aLD"/>
                             <constraint firstItem="EA9-Lf-BfL" firstAttribute="centerX" secondItem="ZQL-gK-BCL" secondAttribute="centerX" id="Tf7-JB-Gs8"/>
                             <constraint firstItem="EA9-Lf-BfL" firstAttribute="centerY" secondItem="ZQL-gK-BCL" secondAttribute="centerY" id="aji-tM-Gxg"/>
-                            <constraint firstItem="qDP-RV-qAe" firstAttribute="trailing" secondItem="YDg-8R-zeJ" secondAttribute="trailing" constant="32" id="bPq-ee-Ayy"/>
                             <constraint firstItem="qDP-RV-qAe" firstAttribute="trailing" secondItem="EA9-Lf-BfL" secondAttribute="trailing" constant="16" id="jKm-C9-aox"/>
                             <constraint firstItem="YDg-8R-zeJ" firstAttribute="top" secondItem="EA9-Lf-BfL" secondAttribute="bottom" constant="8" id="jgk-Xr-Fhd"/>
-                            <constraint firstItem="YDg-8R-zeJ" firstAttribute="leading" secondItem="qDP-RV-qAe" secondAttribute="leading" constant="32" id="vVO-A4-0Tx"/>
+                            <constraint firstItem="YDg-8R-zeJ" firstAttribute="centerX" secondItem="ZQL-gK-BCL" secondAttribute="centerX" id="kE9-58-Dnk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qDP-RV-qAe"/>
                     </view>
