@@ -8,17 +8,25 @@
 
 import UIKit
 import Firebase
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         // Use Firebase library to configure APIs
         FirebaseApp.configure()
+        
+        let center =  UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound, .badge]) { (result, error) in
+            print("Result: \(result)")
+        }
+        
+        setupNotifications()
+        
         return true
     }
 
@@ -43,7 +51,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
+    
+    func addNotification(trigger: UNCalendarNotificationTrigger, count: Int) {
+        let content = UNMutableNotificationContent()
+        content.title = "Time to check in!"
+        content.body = "Please fill out a new report"
+        content.sound = UNNotificationSound.default()
+        
+        let request = UNNotificationRequest(identifier: "CheckIn\(count)", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
+    
+    func setupNotifications() {
+        var date = DateComponents()
+        
+        for t in 9...21 {
+            date.hour = t
+            let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
+            addNotification(trigger: trigger, count: t)
+        }
+    }
 
 }
 
