@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 
 class NewReportViewController: UIViewController {
+    @IBOutlet weak var descriptionTextView: UITextView!
+    
     var newReport: Report!
     var uid: String!
     var email: String!
@@ -27,6 +29,8 @@ class NewReportViewController: UIViewController {
             email = self.user!.email!
             ref = Database.database().reference().child("reports").child(uid)
         } else { return }
+        
+        addDoneToolbar()
     }
     
     override func didReceiveMemoryWarning() {
@@ -48,6 +52,22 @@ class NewReportViewController: UIViewController {
         newReport = Report(mood: String(Int(moodLevel.value)), addedByUser: email, description: descriptionField.text, created_at:NSDate().timeIntervalSince1970, key: key)
         ref.child(key).setValue(newReport.toAnyObject())
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func addDoneToolbar() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(self.donePressed))
+        
+        toolbar.setItems([flexSpace, doneButton], animated: true)
+        
+        descriptionTextView.inputAccessoryView = toolbar
+    }
+    
+    @objc func donePressed() {
+        self.view.endEditing(true)
     }
     
     /*
