@@ -33,6 +33,8 @@ class NewReportViewController: UIViewController {
         descriptionField.text = ""
         descriptionField.placeholder = "Explain your mood..."
         addDoneToolbar()
+        
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
     }
     
     override func didReceiveMemoryWarning() {
