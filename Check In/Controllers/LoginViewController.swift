@@ -8,16 +8,22 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 class LoginViewController: UIViewController {
+    var ref: DatabaseReference!
     let loginToList = "LoginToList"
     
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
     @IBAction func loginDidTouch(_ sender: Any) {
-        performSegue(withIdentifier: loginToList, sender: nil)
         Auth.auth().signIn(withEmail: emailField.text!, password: passwordField.text!)
+        let user = Auth.auth().currentUser
+        if user != nil {
+            ref = Database.database().reference().child("reports").child(user!.uid)
+            performSegue(withIdentifier: loginToList, sender: nil)
+        }
     }
     
     @IBAction func signUpDidTouch(_ sender: Any) {
@@ -65,9 +71,7 @@ class LoginViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         Auth.auth().addStateDidChangeListener() { auth, user in
-            // 2
             if user != nil {
-                // 3
                 self.performSegue(withIdentifier: self.loginToList, sender: nil)
             }
         }
@@ -79,15 +83,32 @@ class LoginViewController: UIViewController {
     }
     
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if let detailViewController = segue.destination as? ReportsTableViewController {
+            detailViewController.reportList = loadData()
+        }
     }
-    */
+    
+    func loadData() -> Array<Report> {
+        var reportList: [Report] = []
+        ref.observe(.value, with: { snapshot in
+            var newReports: [Report] = []
+            
+            for report in snapshot.children {
+                let reportItem = Report(snapshot: report as! DataSnapshot)
+                newReports.append(reportItem)
+            }
+            
+            reportList = newReports
+        })
+        return reportList.reversed()
+    }
 
 }
 
