@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 
 class ReportsTableViewController: UITableViewController {
+    let logoutToLoginPage = "logoutToLoginPage"
     var ref: DatabaseReference!
     var reportList: [Report] = []
     var uid: String!
@@ -24,7 +25,7 @@ class ReportsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
+
         if user != nil {
             uid = self.user!.uid
             email = self.user!.email!
@@ -34,10 +35,10 @@ class ReportsTableViewController: UITableViewController {
         ref.observe(DataEventType.value, with: { (snapshot) in
             //if the reference have some values
             if snapshot.childrenCount > 0 {
-                
+
                 //clearing the list
                 self.reportList.removeAll()
-                
+
                 //iterating through all the values
                 for reports in snapshot.children.allObjects as! [DataSnapshot] {
                     //getting values
@@ -46,9 +47,9 @@ class ReportsTableViewController: UITableViewController {
                     let reportDescription = reportObject?["description"]
                     let reportAddedByUser = reportObject?["addedByUser"]
                     let reportCreatedAt = reportObject?["created_at"]
-                    
+
                     let report = Report(mood: reportMood as! String, addedByUser: reportAddedByUser as! String, description: reportDescription as! String, created_at: reportCreatedAt as! TimeInterval)
-                    
+
                     //appending it to list
                     self.reportList.append(report)
                 }
@@ -131,6 +132,20 @@ class ReportsTableViewController: UITableViewController {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 detailViewController.report = reportList[indexPath.row]
             }
+        }
+    }
+
+    @IBAction func logout(_ sender: Any) {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+//            self.performSegue(withIdentifier: self.logoutToLoginPage, sender: nil)
+            let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+            let appDel:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+            
+            appDel.window?.rootViewController = loginVC
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
         }
     }
 
