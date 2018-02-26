@@ -63,6 +63,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Reports" id="2qC-cA-03z">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="f1T-Ww-1wL">
+                            <connections>
+                                <action selector="logout:" destination="NmB-OK-10N" id="wlb-Is-EDT"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="G1I-N3-3Hp">
                             <connections>
                                 <segue destination="oYB-D2-QzS" kind="popoverPresentation" popoverAnchorBarButtonItem="G1I-N3-3Hp" id="vS1-5i-TpV">
@@ -155,6 +160,7 @@
                     </view>
                     <connections>
                         <outlet property="descriptionField" destination="79D-Jh-Cqq" id="6aY-6w-21U"/>
+                        <outlet property="descriptionTextView" destination="79D-Jh-Cqq" id="UwP-qS-OIW"/>
                         <outlet property="moodLevel" destination="M7l-st-nJc" id="koz-qr-8T0"/>
                     </connections>
                 </viewController>
@@ -244,7 +250,7 @@
         <!--Login View Controller-->
         <scene sceneID="7tX-mF-KfE">
             <objects>
-                <viewController id="WTi-O8-Ba7" customClass="LoginViewController" customModule="Check_In" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="WTi-O8-Ba7" customClass="LoginViewController" customModule="Check_In" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZQL-gK-BCL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -345,6 +351,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="EA9-Lf-BfL" firstAttribute="top" secondItem="ZQL-gK-BCL" secondAttribute="bottom" constant="-509" id="Fo5-M8-H4h"/>
                             <constraint firstItem="EA9-Lf-BfL" firstAttribute="leading" secondItem="qDP-RV-qAe" secondAttribute="leading" constant="16" id="Gyz-pu-aLD"/>
                             <constraint firstItem="EA9-Lf-BfL" firstAttribute="centerX" secondItem="ZQL-gK-BCL" secondAttribute="centerX" id="Tf7-JB-Gs8"/>
                             <constraint firstItem="EA9-Lf-BfL" firstAttribute="centerY" secondItem="ZQL-gK-BCL" secondAttribute="centerY" id="aji-tM-Gxg"/>
